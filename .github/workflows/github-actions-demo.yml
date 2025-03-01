@@ -1,1 +1,22 @@
+name: CI Workflow
 
+on: 
+  push:
+    branches:
+        - main
+
+jobs:
+  build:
+    runs-on: Ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: action/checkout@v4
+      - name: Set-up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - name: Installing dependencies
+        run: npm install
+      - name: Run test
+        run: npm test
+  
